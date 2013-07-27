@@ -62,10 +62,12 @@ public class FishEvent extends Job {
     @Override
     public void execute() {
         if (!collecting()) {
-           ctx.movement.findPath(myPool).traverse();
+            if (ctx.movement.getDistance(myPool.getLocation(), player.getLocation()) > 7) {
+                ctx.movement.findPath(myPool.getLocation()).traverse();
+            }
             if (!myPool.isOnScreen()) {
                 ctx.camera.turnTo(myPool);
-                if(!myPool.isOnScreen()){
+                if (!myPool.isOnScreen()) {
                     ctx.camera.setYaw(Random.nextInt(12, 27));
                 }
             }

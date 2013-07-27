@@ -14,11 +14,11 @@ public class GUI extends JFrame {
     public static boolean fish = false;
 
     public GUI() {
-        setResizable(true);
+        setResizable(false);
         setAlwaysOnTop(true);
         setTitle("DivineTears");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(300, 300, 300, 300);
+        setBounds(300, 300, 250, 200);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -29,8 +29,12 @@ public class GUI extends JFrame {
         comboBox.setBounds(10, 50, 120, 27);
         contentPane.add(comboBox);
         comboBox.setVisible(true);
+        JLabel text = new JLabel("Choose how to collect:");
+        text.setBounds(10, 23, 140, 27);
+        contentPane.add(text);
+        text.setVisible(true);
         JButton btnStart = new JButton("Start");
-        btnStart.setBounds(150, 225, 120, 27);
+        btnStart.setBounds(100, 125, 120, 27);
         contentPane.add(btnStart);
 
 

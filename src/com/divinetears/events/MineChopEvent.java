@@ -45,9 +45,11 @@ public class MineChopEvent extends Job {
         }
     }
 
-    /*public boolean idle() {
+    private Timer checkIfIdle = new Timer(Random.nextInt(8500, 10000));
+
+    public boolean idle() {
         return !player.isInMotion() && !player.isInCombat() && player.getAnimation() == -1;
-    }*/
+    }
 
     @Override
     public boolean activate() {
@@ -64,11 +66,13 @@ public class MineChopEvent extends Job {
     @Override
     public void execute() {
         if (!collecting()) {
-            ctx.movement.findPath(myObject).traverse();
+            if (ctx.movement.getDistance(myObject.getLocation(), player.getLocation()) > 7) {
+                ctx.movement.findPath(myObject.getLocation()).traverse();
+            }
             if (!myObject.isOnScreen()) {
                 ctx.camera.turnTo(myObject);
-                if(!myObject.isOnScreen()){
-                    ctx.camera.setYaw(Random.nextInt(12,27));
+                if (!myObject.isOnScreen()) {
+                    ctx.camera.setYaw(Random.nextInt(12, 27));
                 }
             }
 
@@ -78,7 +82,16 @@ public class MineChopEvent extends Job {
             }
         }
         while (collecting()) {
-            if (myObject.isValid()) Delay.sleep(50, 100);
+            if (!idle()) {
+                if (!checkIfIdle.isRunning()) checkIfIdle.reset();
+                Delay.sleep(50, 100);
+            } else {
+                if (checkIfIdle.isRunning()) {
+                    Delay.sleep(50, 100);
+                } else {
+                    break;
+                }
+            }
         }
 
 
