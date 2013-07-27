@@ -83,7 +83,7 @@ public class MineChopEvent extends Job {
         }
         while (collecting()) {
             if (!idle()) {
-                if (!checkIfIdle.isRunning()) checkIfIdle.reset();
+                checkIfIdle.reset();
                 Delay.sleep(50, 100);
             } else {
                 if (checkIfIdle.isRunning()) {
