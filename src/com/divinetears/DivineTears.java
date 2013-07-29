@@ -3,13 +3,14 @@ package com.divinetears;
 
 import com.divinetears.events.FishEvent;
 import com.divinetears.events.MineChopEvent;
+import com.divinetears.events.NearestDepositEvent;
 import com.divinetears.node.Job;
 import com.divinetears.node.JobContainer;
 import org.powerbot.script.Manifest;
 import org.powerbot.script.PollingScript;
 import org.powerbot.script.util.Delay;
 
-@Manifest(authors = "lolek0120", name = "DivineTears", description = "Collects divine tears")
+@Manifest(authors = "lolek0120", name = "DivineTears", description = "Collects divine tears", version = 1.1)
 public class DivineTears extends PollingScript {
 
 
@@ -21,12 +22,12 @@ public class DivineTears extends PollingScript {
             @Override
             public void run() {
                 frame.setVisible(true);
-                while(frame.isActive()) sleep(350);
+                while (frame.isActive()) sleep(350);
                 if (container == null) {
                     container = new JobContainer(new Job[]{
                             new MineChopEvent(getContext()),
-                            new FishEvent(getContext())
-
+                            new FishEvent(getContext()),
+                            new NearestDepositEvent(getContext())
                     });
 
                 }
@@ -34,10 +35,9 @@ public class DivineTears extends PollingScript {
         });
     }
 
-
     @Override
     public int poll() {
-       while (frame.isActive()) Delay.sleep(500);
+        while (frame.isActive()) Delay.sleep(500);
         final Job job = container.get();
         if (job != null) {
             job.execute();
