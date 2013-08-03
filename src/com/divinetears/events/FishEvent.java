@@ -3,7 +3,6 @@ package com.divinetears.events;
 import com.divinetears.GUI;
 import com.divinetears.node.Job;
 import org.powerbot.script.methods.MethodContext;
-import org.powerbot.script.util.Delay;
 import org.powerbot.script.util.Random;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.Npc;
@@ -55,7 +54,7 @@ public class FishEvent extends Job {
             if (!myPool.isValid()) {
                 break;
             }
-            Delay.sleep(50, 100);
+            sleep(50, 100);
         }
     }
 
@@ -66,7 +65,7 @@ public class FishEvent extends Job {
             if (!myPool.isOnScreen()) {
                 ctx.camera.turnTo(myPool);
                 if(!myPool.isOnScreen()){
-                    ctx.camera.setYaw(Random.nextInt(12, 27));
+                    ctx.camera.setAngle(Random.nextInt(12, 27));
                 }
             }
 
@@ -76,7 +75,7 @@ public class FishEvent extends Job {
             }
         }
         while (collecting()) {
-            if (myPool.isValid()) Delay.sleep(50, 100);
+            if (myPool.isValid()) sleep(50, 100);
         }
 
     }

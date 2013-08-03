@@ -3,7 +3,6 @@ package com.divinetears.events;
 import com.divinetears.GUI;
 import com.divinetears.node.Job;
 import org.powerbot.script.methods.MethodContext;
-import org.powerbot.script.util.Delay;
 import org.powerbot.script.util.Random;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.GameObject;
@@ -41,7 +40,7 @@ public class MineChopEvent extends Job {
             if (!myObject.isValid()) {
                 break;
             }
-            Delay.sleep(50, 100);
+            sleep(50, 100);
         }
     }
 
@@ -68,7 +67,7 @@ public class MineChopEvent extends Job {
             if (!myObject.isOnScreen()) {
                 ctx.camera.turnTo(myObject);
                 if(!myObject.isOnScreen()){
-                    ctx.camera.setYaw(Random.nextInt(12,27));
+                    ctx.camera.setAngle(Random.nextInt(12,27));
                 }
             }
 
@@ -78,7 +77,7 @@ public class MineChopEvent extends Job {
             }
         }
         while (collecting()) {
-            if (myObject.isValid()) Delay.sleep(50, 100);
+            if (myObject.isValid()) sleep(50, 100);
         }
 
 
