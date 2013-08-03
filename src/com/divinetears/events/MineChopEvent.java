@@ -52,7 +52,7 @@ public class MineChopEvent extends Job {
     public boolean activate() {
         if (!GUI.fish) {
             if (myObject == ctx.objects.getNil() || !myObject.isValid()) {
-                for (GameObject r : ctx.objects.select().name(GUI.objectToCollectFrom).nearest().first()) {
+                for (GameObject r : ctx.objects.select().id(GUI.objectToCollectFrom).nearest().first()) {
                     myObject = r;
                 }
             }

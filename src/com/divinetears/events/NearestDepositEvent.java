@@ -4,7 +4,6 @@ import com.divinetears.GUI;
 import com.divinetears.Global;
 import com.divinetears.node.Job;
 import org.powerbot.script.methods.MethodContext;
-import org.powerbot.script.util.Delay;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.GameObject;
 import org.powerbot.script.wrappers.Npc;
@@ -70,7 +69,7 @@ public class NearestDepositEvent extends Job {
             if (!myPool.isValid()) {
                 break;
             }
-            Delay.sleep(50, 100);
+            sleep(50, 100);
         }
     }
 
@@ -105,10 +104,10 @@ public class NearestDepositEvent extends Job {
         while (collecting()) {
             if (!idle()) {
                 Global.checkIfIdle.reset();
-                Delay.sleep(50, 100);
+                sleep(50, 100);
             } else {
                 if (Global.checkIfIdle.isRunning()) {
-                    Delay.sleep(50, 100);
+                    sleep(50, 100);
                 } else {
                     break;
                 }
